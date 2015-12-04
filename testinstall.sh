@@ -20,5 +20,16 @@ columns=$(stty -a | tr \; \\012 | egrep 'columns' | cut -d' ' -f3)
 r=$(( rows / 2 ))
 c=$(( columns / 2 ))
 
+
+welcomeDialog()
+{
+# Display the welcome dialog message
+whiptail --msgbox --backtitle "Welcome" --title "WD My Cloud Automated Installer" "This installer will allow you to add features to your My CLoud NAS" $r $c
+
+# Inform about device specs
+whiptail --msgbox --backtitle "Checking Device Specs" --title "We will first check that you are running on a compatible device" $r $c
+}
+
+
 echo ; echo ; echo This is a sample installer
 echo ; echo ; echo The end.
