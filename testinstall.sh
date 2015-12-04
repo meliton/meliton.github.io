@@ -22,10 +22,10 @@ c=$(( columns / 2 ))
 
 
 # Display the welcome dialog message
-whiptail --msgbox --backtitle "Welcome" --title "WD My Cloud Automated Installer" "This installer will allow you to add features to your My CLoud NAS" $r $c
+whiptail --msgbox "This installer will allow you to add features to your My Cloud NAS" --backtitle "Welcome" --title "WD My Cloud Automated Installer"  $r $c
 
 # Inform about device specs
-whiptail --msgbox --backtitle "Checking Device Specs" --title "We will first check that you are running on a compatible device" $r $c
+whiptail --msgbox "We will first check that you are running on a compatible device" --backtitle "Checking Device Specs" --title "Part 2" $r $c
 
 
 echo ; echo ; echo This is a sample installer
