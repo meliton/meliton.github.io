@@ -13,12 +13,12 @@
 #screenSize=$(stty -a | tr \; \\012 | grep 'rows|columns' | cut '-d ' -f3)
 
 # Find rows and columns
-#rows=$(stty -a | tr \; \\012 | grep 'rows' | cut -d' ' -f3)
-#columns=$(stty -a | tr \; \\012 | grep 'columns' | cut -d' ' -f3)
+rows=$(stty -a | tr \; \\012 | grep 'rows' | cut -d' ' -f3)
+columns=$(stty -a | tr \; \\012 | grep 'columns' | cut -d' ' -f3)
 
 # Divide by two so the dialogs take up half of the screen, which looks nice.
-#r=$(( rows / 2 ))
-#c=$(( columns / 2 ))
+r=$(( rows / 2 ))
+c=$(( columns / 2 ))
 
 
 welcomeDialog()
