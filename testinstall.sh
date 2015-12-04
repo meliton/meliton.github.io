@@ -10,7 +10,7 @@
 
 
 # Get the screen size in case we need a full-screen message and so we can display dialog that is sized the best
-screenSize=$(stty -a | tr \; \\012 | grep 'rows|columns' | cut '-d ' -f3)
+#screenSize=$(stty -a | tr \; \\012 | grep 'rows|columns' | cut '-d ' -f3)
 
 # Find rows and columns
 rows=$(stty -a | tr \; \\012 | grep 'rows' | cut -d' ' -f3)
