@@ -38,15 +38,18 @@ The use of SSH (Secure Shell) to tamper with the drive in order to modify or att
 
 whiptail --backtitle 'WARNING - CONTINUED' --title "WARNING - MAY VOID YOUR WARRANTY" --msgbox "THIS SOFTWARE IS PROVIDED 'AS IS' WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  
 
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OT THE USE OR OTHER DEALINGS WITH THE SOFTWARE" $r $c 
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OT THE USE OR OTHER DEALINGS WITH THE SOFTWARE." $r $c 
 
 if (whiptail --backtitle "ACCEPT LICENSE AGREEMENT, Yes or No" --title "Accept License Agreement?" --yesno "Do you accept the terms?"  $r $c) then
   echo 
 else 
     echo "User selected NO - cancelling script" ; exit 1
 fi
+}
 
-# Inform about device specs
+getCloudSpecs()
+{
+# Notice to gather My Cloud specs
 whiptail --backtitle "Checking Device Specs" --title "Verifying Device" --msgbox "We will first check that you are running this script on a compatible device." $r $c
 }
 
@@ -58,6 +61,8 @@ getRowColumn
 # Welcome screen
 welcomeDialog
 
+# get the hardware specs
+getCloudSpecs
 
 echo ; echo ; echo This is a sample installer
 echo ; echo ; echo The end.
