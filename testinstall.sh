@@ -116,9 +116,9 @@ installHtop()
 # check if it's already installed
 case "$(dpkg-query -s -f='${Status}' htop 2>/dev/null | grep -c "ok installed")" in
    1) ;;
-   *) echo [ htop is not installed, getting file and installing! ]; 
-      curl -o htop.deb https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/htop/htop_1.0.1-1_armhf.deb ; 
-      echo dpkg -i htop.deb;
+   *) echo [ htop is not installed, getting file and installing! ] ; 
+      curl -o https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/htop/htop_1.0.1-1_armhf.deb ; 
+      echo dpkg -i htop_1.0.1-1_armhf.deb ;
 	  echo Success! Htop is now installed. ;;
 esac
 }
@@ -132,7 +132,13 @@ echo
 installUnrar()
 {
 # check if it's already installed
-echo 
+case "$(dpkg-query -s -f='${Status}' unrar 2>/dev/null | grep -c "ok installed")" in
+   1) ;;
+   *) echo [ unrar is not installed, getting file and installing! ] ; 
+      curl -o https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/unrar/unrar_1.1.4-1_armhf.deb ; 
+      echo dpkg -i unrar_1.1.4-1_armhf.deb ;
+	  echo Success! Unrar is now installed. ;;
+esac 
 }
 
 installSickRage()
