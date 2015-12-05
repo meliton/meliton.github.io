@@ -8,6 +8,13 @@
 #
 # curl -L meliton.github.io\testinstall.sh | bash
 
+########## VARIABLES ##########
+# put vars here
+
+
+########## FUNCTIONS ##########
+getRowColumn()
+{
 # Find rows and columns
 rows=$(stty -a | tr \; \\012 | grep 'rows' | cut -d' ' -f3)
 columns=$(stty -a | tr \; \\012 | grep 'columns' | cut -d' ' -f3)
@@ -15,13 +22,41 @@ columns=$(stty -a | tr \; \\012 | grep 'columns' | cut -d' ' -f3)
 # Divide by two so the dialogs take up half of the screen
 r=$(( rows / 2 ))
 c=$(( columns / 2 ))
+}
 
-
+welcomeDialog()
+{
 # Display the welcome dialog message
-whiptail --backtitle "Welcome" --title "WD My Cloud Automated Installer" --msgbox "This installer will allow you to add features to your My Cloud NAS" $r $c
+whiptail --backtitle "Welcome Screen" --title "WD My Cloud Automated Installer" --msgbox "This installer will allow you to add features to your My Cloud NAS
+
+Every reasonable measure has been taken in these scripts to ensure a safe and minimally intrusive mod." $r $c
+
+# Inform about voiding the warranty
+whiptail --backtitle "WARNING" --title "WARNING - MAY VOID YOUR WARRANTY" --msgbox "According to WD's support site...
+
+The use of SSH (Secure Shell) to tamper with the drive in order to modify or attempt to modify the device outside the normal operation of the product will void the drive's warranty." $r $c
+
+whiptail --backtitle 'WARNING - CONTINUED' --title "WARNING - MAY VOID YOUR WARRANTY" --msgbox "THIS SOFTWARE IS PROVIDED 'AS IS' WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  
+
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OT THE USE OR OTHER DEALINGS WITH THE SOFTWARE" $r $c 
+
+if (whiptail --backtitle "ACCEPT LICENSE AGREEMENT, Yes or No" --title "Accept License Agreement?" --yesno "Do you accept the terms?"  $r $c) then
+  echo 
+else 
+    echo "User selected NO - cancelling script" ; exit 1
+fi
 
 # Inform about device specs
-whiptail --backtitle "Checking Device Specs" --title "Verifying Device" --msgbox "We will first check that you are running on a compatible device" $r $c
+whiptail --backtitle "Checking Device Specs" --title "Verifying Device" --msgbox "We will first check that you are running this script on a compatible device." $r $c
+}
+
+
+########## SCRIPT ##########
+# get screen info to render properly
+getRowColumn
+
+# Welcome screen
+welcomeDialog
 
 
 echo ; echo ; echo This is a sample installer
