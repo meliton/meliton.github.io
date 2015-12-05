@@ -53,6 +53,17 @@ getCloudSpecs()
 whiptail --backtitle "Checking Device Specs" --title "Verifying Device" --msgbox "We will first check that you are running this script on a compatible device." $r $c
 }
 
+getUserStatus()
+{
+# Checks if user is root
+echo [1] Checking for root...
+case "$EUID" in
+    0) ;;
+    *) echo [ Installation must be run as ROOT user]; exit 1 ;;
+esac ; echo    ##############
+
+}
+
 
 ########## SCRIPT ##########
 # get screen info to render properly
@@ -60,6 +71,9 @@ getRowColumn
 
 # Welcome screen
 welcomeDialog
+
+# get user status
+getUserStatus
 
 # get the hardware specs
 getCloudSpecs
