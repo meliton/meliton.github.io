@@ -52,15 +52,22 @@ getUserStatus()
 # Checks if user is root
 case "$EUID" in
     0) ;;
-    *) whiptail --title 'Not Root User' --infobox 'Installation must be run as ROOT user' $r $c ; exit 1 ;;
+    *) echo Exiting... Installation must be run as ROOT user ; exit 1 ;;
 esac 
 }
 
-#getcloudSpecs()
-#{
+getCloudSpecs()
+{
 # Notice to gather My Cloud specs
-#whiptail --title "Verifying Device" --msgbox "We will first check that you are running this script on a compatible device." $r $c
-#}
+whiptail --title "Verifying Device" --msgbox "We will first check that you are running this script on a compatible device." $r $c
+
+# check for armv7l hardware (used x86 to test in vm)
+case "$(uname -m 2>/dev/null | grep -c "armv7l" )" in
+   1) ;;
+   *) echo Exiting... Wrong hardware type. Not armv7l ]; exit 1 ;;
+esac
+whiptail --title "Success" --msgbox "You are running this on a compatible WD My Cloud NAS." $r $c 
+}
 
 ########## SCRIPT ##########
 # get screen info to render properly
@@ -73,7 +80,7 @@ welcomeDialog
 getUserStatus
 
 # get the hardware specs
-#getCloudSpecs
+getCloudSpecs
 
 
 echo ; echo ; echo This is a sample installer
