@@ -102,15 +102,56 @@ softwareMenuList()
 {
 # put a list of the software packages you support
 whiptail --title "Software Installation List"  --checklist \
-"Choose the software you want to install." 15 60 6 \
+"Choose the software you want to install." $r $c 6 --separate-output \
 "htop" "interactive process viewer" ON \
 "git" "version control system" OFF \
 "unrar" "unarchiver for .rar files" OFF \
 "SickRage" "TV show downloader" OFF \
 "SickBeard" "Movie downloader" OFF \
-"Transmission" "bittorrent client" OFF 
+"Transmission" "bittorrent client" OFF 2>softlist
 }
 
+installHtop()
+{
+# check if it's already installed
+case "$(dpkg-query -s -f='${Status}' htop 2>/dev/null | grep -c "ok installed")" in
+   1) ;;
+   *) echo [ htop is not installed, getting file and installing! ]; 
+      curl -o htop.deb https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/htop/htop_1.0.1-1_armhf.deb ; 
+      echo dpkg -i htop.deb;
+	  echo Success! Htop is now installed. ;;
+esac
+}
+
+installGit()
+{
+# check if it's already installed
+echo 
+}
+
+installUnrar()
+{
+# check if it's already installed
+echo 
+}
+
+installSickRage()
+{
+# check if it's already installed
+echo 
+}
+
+installSickBeard()
+{
+# check if it's already installed
+echo 
+}
+
+installTransmission()
+{
+# check if it's already installed
+echo 
+}
 
 ########## SCRIPT ##########
 # get screen info to render properly
@@ -130,6 +171,8 @@ checkManBug
 
 # show the software menu
 softwareMenuList
+
+installHtop
 
 
 echo ; echo ; echo Success!  The end.
