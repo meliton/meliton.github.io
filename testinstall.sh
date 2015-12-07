@@ -234,7 +234,7 @@ echo
 installSickBeard()
 {
 # check if it's already installed
-echo 
+echo  
 }
 
 installTransmission()
