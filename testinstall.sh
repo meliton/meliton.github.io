@@ -227,8 +227,28 @@ esac
 
 installSickRage()
 {
-# check if it's already installed
-echo 
+installUnrar
+installGit
+installPython
+installPythonOpenSSL
+
+# clone sickrage from github
+git clone https://github.com/SickRage/SickRage.git /opt/sickrage
+
+#create sickrage config file
+
+
+#copy init script into startup folder and set attributes
+cp /opt/sickrage/runscripts/init.debian /etc/init.d/sickrage
+chmod 755 /etc/init.d/sickrage
+
+#start the sickrage service
+/etc/init.d/sickrage start
+
+#add sickrage to system startup service to stay persistent
+update-rc.d sickrage defaults
+
+echo You will find SickRage in your browser at port 8081
 }
 
 installSickBeard()
