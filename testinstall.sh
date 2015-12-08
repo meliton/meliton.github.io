@@ -236,7 +236,11 @@ installPythonOpenSSL
 git clone https://github.com/SickRage/SickRage.git /opt/sickrage
 
 #create sickrage config file
-
+echo SR_USER=root >/etc/default/sickrage
+echo SR_GROUP=root >>/etc/default/sickrage
+echo SR_HOME=/opt/sickrage >>/etc/default/sickrage
+echo SR_DATA=/opt/sickrage >>/etc/default/sickrage
+echo SR_PIDFILE=/home/root/.sickrage.pid
 
 #copy init script into startup folder and set attributes
 cp /opt/sickrage/runscripts/init.debian /etc/init.d/sickrage
