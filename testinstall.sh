@@ -99,7 +99,7 @@ case "$(ls -l /var/cache/ 2>/dev/null | grep "man" | cut -f 3 -d ' ' )" in
    *) whiptail --title "Man Folder Bug Found" --msgbox "Man folder bug found.  
 
 Select OK to fix man folder bug"  $r $c ; 
-echo chown -R man:root /var/cache/man ;; 
+chown -R man:root /var/cache/man ;; 
 esac ; 
 else whiptail --title "Skipping Man Folder Bug" --msgbox "Select OK to continue"  $r $c
 fi
@@ -151,7 +151,7 @@ case "$(dpkg-query -s -f='${Status}' htop 2>/dev/null | grep -c "ok installed")"
    1) ;;
    *) echo [ htop is not installed, getting file and installing! ] ; 
       curl -O https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/htop/htop_1.0.1-1_armhf.deb ; 
-      echo dpkg -i htop_1.0.1-1_armhf.deb ;
+      dpkg -i htop_1.0.1-1_armhf.deb ;
 	  echo Success! htop is now installed. ;;
 esac
 }
