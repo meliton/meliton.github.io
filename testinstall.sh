@@ -162,16 +162,16 @@ installGit()
 case "$(dpkg-query -s -f='${Status}' libcurl3-gnutls 2>/dev/null | grep -c "ok installed")" in
    1) ;;
    *) echo [ libcurl3 is not installed, getting file and installing! ] ; 
-      curl -O https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/libcurl3/libcurl3-gnutls_7.26.0-1+wheezy13_armhf.deb ; 
-      echo dpkg -i libcurl3-gnutls_7.26.0-1+wheezy13_armhf.deb ;
+      curl -O -sS https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/libcurl3/libcurl3-gnutls_7.26.0-1+wheezy13_armhf.deb ; 
+      dpkg -i libcurl3-gnutls_7.26.0-1+wheezy13_armhf.deb ;
 	  echo Success! libcurl3-gnutls is now installed. ;;
 esac 
 
 case "$(dpkg-query -s -f='${Status}' liberror-perl 2>/dev/null | grep -c "ok installed")" in
    1) ;;
    *) echo [ liberror-perl is not installed, getting file and installing! ] ; 
-      curl -O https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/liberror-perl/liberror-perl_0.17-1_all.deb ; 
-      echo dpkg -i liberror-perl_0.17-1_all.deb ;
+      curl -O -sS https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/liberror-perl/liberror-perl_0.17-1_all.deb ; 
+      dpkg -i liberror-perl_0.17-1_all.deb ;
 	  echo Success! liberror-perl is now installed. ;;
 esac 
 
@@ -179,16 +179,16 @@ esac
 case "$(dpkg-query -s -f='${Status}' patch 2>/dev/null | grep -c "ok installed")" in
    1) ;;
    *) echo [ patch is not installed, getting file and installing! ] ; 
-      curl -O https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/patch/patch_2.6.1-3_armhf.deb ; 
-      echo dpkg -i patch_2.6.1-3_armhf.deb ;
+      curl -O -sS https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/patch/patch_2.6.1-3_armhf.deb ; 
+      dpkg -i patch_2.6.1-3_armhf.deb ;
 	  echo Success! patch is now installed. ;;
 esac 
 
 case "$(dpkg-query -s -f='${Status}' less 2>/dev/null | grep -c "ok installed")" in
    1) ;;
    *) echo [ less is not installed, getting file and installing! ] ; 
-      curl -O https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/less/less_444-4_armhf.deb ; 
-      echo dpkg -i less_444-4_armhf.deb ;
+      curl -O -sS https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/less/less_444-4_armhf.deb ; 
+      dpkg -i less_444-4_armhf.deb ;
 	  echo Success! less is now installed. ;;
 esac 
 
@@ -196,16 +196,16 @@ esac
 case "$(dpkg-query -s -f='${Status}' git-man 2>/dev/null | grep -c "ok installed")" in
    1) ;;
    *) echo [ git-man is not installed, getting file and installing! ] ; 
-      curl -O https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/git/git-man_1.7.10.4-1+wheezy1_all.deb ; 
-      echo dpkg -i git-man_1.7.10.4-1+wheezy1_all.deb ;
+      curl -O -sS https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/git/git-man_1.7.10.4-1+wheezy1_all.deb ; 
+      dpkg -i git-man_1.7.10.4-1+wheezy1_all.deb ;
 	  echo Success! git-man is now installed. ;;
 esac 
 
 case "$(dpkg-query -s -f='${Status}' git 2>/dev/null | grep -c "ok installed")" in
    1) ;;
    *) echo [ git is not installed, getting file and installing! ] ; 
-      curl -O https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/git/git_1.7.10.4-1+wheezy1_armhf.deb ; 
-      echo dpkg -i git_1.7.10.4-1+wheezy1_armhf.deb ;
+      curl -O -sS https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/git/git_1.7.10.4-1+wheezy1_armhf.deb ; 
+      dpkg -i git_1.7.10.4-1+wheezy1_armhf.deb ;
 	  echo Success! git is now installed. ;;
 esac 
 }
@@ -216,8 +216,8 @@ installUnrar()
 case "$(dpkg-query -s -f='${Status}' unrar 2>/dev/null | grep -c "ok installed")" in
    1) ;;
    *) echo [ unrar is not installed, getting file and installing! ] ; 
-      curl -O https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/unrar/unrar_1.1.4-1_armhf.deb ; 
-      echo dpkg -i unrar_1.1.4-1_armhf.deb ;
+      curl -O -sS https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/unrar/unrar_1.1.4-1_armhf.deb ; 
+      dpkg -i unrar_1.1.4-1_armhf.deb ;
 	  echo Success! unrar is now installed. ;;
 esac 
 }
@@ -228,8 +228,8 @@ installPython()
 case "$(dpkg-query -s -f='${Status}' python 2>/dev/null | grep -c "ok installed")" in
    1) ;;
    *) echo [ python is not installed, getting file and installing! ] ; 
-      curl -O https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/python/python_2.7.3-4+deb7u1_all.deb ; 
-      echo dpkg -i python_2.7.3-4+deb7u1_all.deb ;
+      curl -O -sS https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/python/python_2.7.3-4+deb7u1_all.deb ; 
+      dpkg -i python_2.7.3-4+deb7u1_all.deb ;
 	  echo Success! python is now installed. ;;
 esac  
 }
@@ -242,16 +242,16 @@ installPython
 case "$(dpkg-query -s -f='${Status}' python-support 2>/dev/null | grep -c "ok installed")" in
    1) ;;
    *) echo [ python-support is not installed, getting file and installing! ] ; 
-      curl -O https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/python-support/python-support_1.0.15_all.deb ; 
-      echo dpkg -i python-support_1.0.15_all.deb ;
+      curl -O -sS https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/python-support/python-support_1.0.15_all.deb ; 
+      dpkg -i python-support_1.0.15_all.deb ;
 	  echo Success! python-support is now installed. ;;
 esac
 
 case "$(dpkg-query -s -f='${Status}' python-openssl 2>/dev/null | grep -c "ok installed")" in
    1) ;;
    *) echo [ python-openssl is not installed, getting file and installing! ] ; 
-      curl -O https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/python-openssl/python-openssl_0.13-2+deb7u1_armhf.deb ; 
-      echo dpkg -i python-openssl_0.13-2+deb7u1_armhf.deb ;
+      curl -O -sS https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/python-openssl/python-openssl_0.13-2+deb7u1_armhf.deb ; 
+      dpkg -i python-openssl_0.13-2+deb7u1_armhf.deb ;
 	  echo Success! python-openssl is now installed. ;;
 esac  
 }
@@ -301,8 +301,8 @@ echo
 cleanup()
 {
 # cleanup temp files
-rm softlist
-# rm *.deb
+rm -f softlist
+rm -f *.deb
 }
 
 ########## SCRIPT ##########
