@@ -44,7 +44,7 @@ The use of SSH (Secure Shell) to tamper with the drive in order to modify or att
 
 whiptail --title "WARNING - MAY VOID YOUR WARRANTY" --msgbox "THIS SOFTWARE IS PROVIDED 'AS IS' WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  
 
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE To THE USE OR OTHER DEALINGS WITH THE SOFTWARE." $r $c 
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE TO THE USE OR OTHER DEALINGS WITH THE SOFTWARE." $r $c 
 
 if (whiptail --title "Accept License Agreement?" --yesno "Do you accept the terms?"  $r $c) then
   echo 
@@ -118,6 +118,30 @@ whiptail --title "Software Installation List"  --checklist \
 "SickRage" "TV show downloader" OFF \
 "SickBeard" "Movie downloader" OFF \
 "Transmission" "bittorrent client" OFF 2>softlist
+
+while read choice
+do
+  case $choice in
+    htop) installHtop
+    ;;
+    git) installGit
+    ;;
+    unrar) installUnrar
+    ;;
+    python) installPython
+    ;;
+    python-openssl) installPythonOpenSSL
+    ;;
+    SickRage) installSickRage
+    ;;
+    SickBeard) installSickBeard
+    ;;
+    Transmission) installTransmission
+    ;;	
+	*)
+    ;;
+  esac
+done < softlist
 }
 
 installHtop()
@@ -274,6 +298,12 @@ installTransmission()
 echo 
 }
 
+cleanup()
+{
+# cleanup temp files
+rm softlist
+}
+
 ########## SCRIPT ##########
 # get screen info to render properly
 getRowColumn
@@ -293,7 +323,7 @@ checkManBug
 # show the software menu
 softwareMenuList
 
-installHtop
+# cleanup install
 
 
 echo ; echo ; echo Success!  The end.
