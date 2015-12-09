@@ -150,7 +150,7 @@ installHtop()
 case "$(dpkg-query -s -f='${Status}' htop 2>/dev/null | grep -c "ok installed")" in
    1) ;;
    *) echo [ htop is not installed, getting file and installing! ] ; 
-      curl -O https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/htop/htop_1.0.1-1_armhf.deb ; 
+      curl -O -sS https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/htop/htop_1.0.1-1_armhf.deb ; 
       dpkg -i htop_1.0.1-1_armhf.deb ;
 	  echo Success! htop is now installed. ;;
 esac
@@ -302,6 +302,7 @@ cleanup()
 {
 # cleanup temp files
 rm softlist
+# rm *.deb
 }
 
 ########## SCRIPT ##########
@@ -324,6 +325,6 @@ checkManBug
 softwareMenuList
 
 # cleanup install
-
+cleanup
 
 echo ; echo ; echo Success!  The end.
