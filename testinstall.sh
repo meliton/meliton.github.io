@@ -49,7 +49,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 if (whiptail --title "Accept License Agreement?" --yesno "Do you accept the terms?"  $r $c) then
   echo 
 else 
-    echo "Exiting... user selected NO - cancelling the script" ; exit 1
+    whiptail --title "License Agreement NOT Accepted" --msgbox "Select OK to cancel the script"  $r $c  ; exit 1
 fi
 }
 
@@ -70,13 +70,17 @@ whiptail --title "Verifying Device" --msgbox "First, we will check that you are 
 # check for armv7l hardware (use x86 to test in vm)
 case "$(uname -m 2>/dev/null | grep -c "armv7l" )" in
    1) ;;
-   *) echo Exiting... Wrong hardware type. Not armv7l ; exit 1 ;;
+   *) whiptail --title "Wrong Hardware Type" --msgbox "Wrong hardware type. Not armv7l. 
+
+Select OK to cancel the script"  $r $c ; exit 1 ;;
 esac
 
 # check for firmware version 04.0x.xx
 case "$(head /etc/version 2>/dev/null | grep -c "04.0" )" in
    1) ;;
-   *) echo Exiting... Wrong Firmware. Not 04.xx.xx ; exit 1 ;;
+   *) whiptail --title "Wrong Firmware Version" --msgbox "Wrong firmware version. Not 04.xx.xx.xx 
+
+Select OK to cancel the script"  $r $c ; exit 1 ;;
 esac
 whiptail --title "Success" --msgbox "You are running this on a compatible WD My Cloud NAS." $r $c 
 }
@@ -92,9 +96,12 @@ It's highly recommended to check for (YES) and fix this bug." $r $c ) then
 # check for man folder permission bug
 case "$(ls -l /var/cache/ 2>/dev/null | grep "man" | cut -f 3 -d ' ' )" in
    man) ;;
-   *) echo Man folder bug found. Fixing man folder ; echo chown -R man:root /var/cache/man ;; 
+   *) whiptail --title "Man Folder Bug Found" --msgbox "Man folder bug found.  
+
+Select OK to fix man folder bug"  $r $c ; 
+echo chown -R man:root /var/cache/man ;; 
 esac ; 
-else echo Skipping... man bug check
+else whiptail --title "Skipping Man Folder Bug" --msgbox "Select OK to continue"  $r $c
 fi
 }
 
