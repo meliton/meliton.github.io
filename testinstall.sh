@@ -216,8 +216,8 @@ installUnrar()
 case "$(dpkg-query -s -f='${Status}' unrar 2>/dev/null | grep -c "ok installed")" in
    1) ;;
    *) echo [ unrar is not installed, getting file and installing! ] ; 
-      curl -O -sS https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/unrar/unrar_1.1.4-1_armhf.deb ; 
-      dpkg -i unrar_1.1.4-1_armhf.deb ;
+      curl -O -sS https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/unrar/unrar_4.1.4-1+deb7u1_armhf.deb ; 
+      dpkg -i unrar_4.1.4-1+deb7u1_armhf.deb ;
 	  echo Success! unrar is now installed. ;;
 esac 
 }
