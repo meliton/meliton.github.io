@@ -8,8 +8,7 @@
 
 ########## VARIABLES ##########
 # put vars here
-USER=""
-PASSWORD=""
+
 
 ########## FUNCTIONS ##########
 getRowColumn()
@@ -27,7 +26,7 @@ loginDialog()
 {
 # display the login dialog
 
-USER=$(whiptail --inputbox "Enter your user name" $r $c Blue --title "pfSense Login Screen" 3>&1 1>&2 2>&3)
+USER=$(whiptail --inputbox "Enter your user name" $r $c --title "pfSense Login Screen" 3>&1 1>&2 2>&3)
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
     echo "User selected Ok and entered " $USER
