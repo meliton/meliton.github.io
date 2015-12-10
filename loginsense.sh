@@ -31,7 +31,7 @@ exitstatus=$?
 if [ $exitstatus -eq 1 ]; then
     exit 1
 else
-    exit 0
+    echo 
 fi
 
 PASSWORD=$(whiptail --passwordbox "Enter your password" $r $c --title "pfSense Login Screen" 3>&1 1>&2 2>&3)
@@ -39,7 +39,7 @@ exitstatus=$?
 if [ $exitstatus -eq 1 ]; then
     exit 1
 else
-    exit 0
+    echo 
 fi
 
 curl --connect-timeout 5 --data "auth_user=$varUser&auth_pass=$varPass&accept=Continue" http://192.168.1.1:8002
