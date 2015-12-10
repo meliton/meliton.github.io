@@ -28,19 +28,17 @@ loginDialog()
 
 USER=$(whiptail --inputbox "Enter your user name" $r $c --title "pfSense Login Screen" 3>&1 1>&2 2>&3)
 exitstatus=$?
-if [ $exitstatus = 1 ]; then
+if [ $exitstatus -eq 1 ]; then
     exit 1
 else
 fi
 
 PASSWORD=$(whiptail --passwordbox "Enter your password" $r $c --title "pfSense Login Screen" 3>&1 1>&2 2>&3)
 exitstatus=$?
-if [ $exitstatus = 0 ]; then
-    echo "User selected Ok and entered " $PASSWORD
+if [ $exitstatus -eq 1 ]; then
+    exit 1
 else
-    echo "User selected Cancel."
 fi
-echo "(Exit status was $exitstatus)"
 
 curl --connect-timeout 5 --data "auth_user=$varUser&auth_pass=$varPass&accept=Continue" http://192.168.1.1:8002
 }
