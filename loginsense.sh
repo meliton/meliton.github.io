@@ -28,12 +28,10 @@ loginDialog()
 
 USER=$(whiptail --inputbox "Enter your user name" $r $c --title "pfSense Login Screen" 3>&1 1>&2 2>&3)
 exitstatus=$?
-if [ $exitstatus = 0 ]; then
-    echo "User selected Ok and entered " $USER
+if [ $exitstatus = 1 ]; then
+    exit 1
 else
-    echo "User selected Cancel."
 fi
-echo "(Exit status was $exitstatus)"
 
 PASSWORD=$(whiptail --passwordbox "Enter your password" $r $c --title "pfSense Login Screen" 3>&1 1>&2 2>&3)
 exitstatus=$?
