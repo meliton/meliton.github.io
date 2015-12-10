@@ -8,7 +8,8 @@
 
 ########## VARIABLES ##########
 # put vars here
-
+USER=""
+PASSWORD=""
 
 ########## FUNCTIONS ##########
 getRowColumn()
