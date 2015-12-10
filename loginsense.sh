@@ -30,7 +30,6 @@ USER=$(whiptail --inputbox "Enter your user name" $r $c --title "pfSense Login S
 exitstatus=$?
 if [ $exitstatus -eq 1 ]; then
     exit 1
-else
 fi
 
 PASSWORD=$(whiptail --passwordbox "Enter your password" $r $c --title "pfSense Login Screen" 3>&1 1>&2 2>&3)
