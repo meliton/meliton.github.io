@@ -32,7 +32,7 @@ exitstatus=$?
 PASSWORD=$(whiptail --passwordbox "Enter your password" $r $c --title "pfSense Login Screen" 3>&1 1>&2 2>&3)
 exitstatus=$?
 
-curl --connect-timeout 5 --data "auth_user=$varUser&auth_pass=$varPass&accept=Continue" http://192.168.1.1:8002
+curl --connect-timeout 5 --data "auth_user=$USER&auth_pass=$PASSWORD&accept=Continue" http://192.168.1.1:8002
 }
 
 ########## SCRIPT ##########
