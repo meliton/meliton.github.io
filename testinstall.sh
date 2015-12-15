@@ -294,8 +294,60 @@ echo
 
 installTransmission()
 {
-# check if it's already installed
-echo 
+# check if transmission dependancies are already installed
+case "$(dpkg-query -s -f='${Status}' libminiupnpc5 2>/dev/null | grep -c "ok installed")" in
+   1) ;;
+   *) echo [ libminiupnpc5 is not installed, getting file and installing! ] ; 
+      curl -O -sS https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/libminiupnpc/libminiupnpc5_1.5-2+deb7u1_armhf.deb ; 
+      dpkg -i libminiupnpc5_1.5-2+deb7u1_armhf.deb ;
+	  echo Success! libminiupnpc5 is now installed. ;;
+esac
+
+case "$(dpkg-query -s -f='${Status}' libnatpmp1 2>/dev/null | grep -c "ok installed")" in
+   1) ;;
+   *) echo [ libnatpmp1 is not installed, getting file and installing! ] ; 
+      curl -O -sS https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/libnatpmp/libnatpmp1_20110808-3_armhf.deb ; 
+      dpkg -i libnatpmp1_20110808-3_armhf.deb ;
+	  echo Success! libnatpmp1 is now installed. ;;
+esac
+
+# checks and installs transmission files in this order
+case "$(dpkg-query -s -f='${Status}' transmission-common 2>/dev/null | grep -c "ok installed")" in
+   1) ;;
+   *) echo [ transmission-common is not installed, getting file and installing! ] ; 
+      curl -O -sS https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/transmission/transmission-common_2.52-3+nmu2_all.deb ; 
+      dpkg -i transmission-common_2.52-3+nmu2_all.deb ;
+	  echo Success! transmission-common is now installed. ;;
+esac
+
+case "$(dpkg-query -s -f='${Status}' transmission-cli 2>/dev/null | grep -c "ok installed")" in
+   1) ;;
+   *) echo [ transmission-common is not installed, getting file and installing! ] ; 
+      curl -O -sS https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/transmission/transmission-cli_2.52-3+nmu2_armhf.deb ; 
+      dpkg -i transmission-cli_2.52-3+nmu2_armhf.deb ;
+	  echo Success! transmission-cli is now installed. ;;
+esac
+
+case "$(dpkg-query -s -f='${Status}' transmission-daemon 2>/dev/null | grep -c "ok installed")" in
+   1) ;;
+   *) echo [ transmission-common is not installed, getting file and installing! ] ; 
+      curl -O -sS https://raw.githubusercontent.com/meliton/WD-My-Cloud-Mods/master/Files/transmission/transmission-daemon_2.52-3+nmu2_armhf.deb ; 
+      dpkg -i transmission-daemon_2.52-3+nmu2_armhf.deb ;
+	  echo Success! transmission-daemon is now installed. ;;
+esac
+
+# stop the daemon in case it started with the previous command
+/etc/init.d/transmission-daemon stop
+
+echo [  Transmission is installed, daemon service is stopped  ] 
+echo [  You need to add a location for your downloads and run the daemon  ] ; echo ; 
+echo [ Your daemon command will look something like this  ] ; echo ; 
+echo transmission-daemon -f -t -u user -v password 
+echo -w /shares/finished              ---- sets download folder
+echo --incomplete-dir /shares/downloads -- sets incomplete download folder
+echo -g /etc/transmission-daemon/     ---- sets configuration directory
+echo -a 192.168.*.*                   ---- sets rpc-whitelist to Class C subnet
+
 }
 
 cleanup()
