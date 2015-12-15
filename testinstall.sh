@@ -116,7 +116,7 @@ whiptail --title "Software Installation List"  --checklist \
 "python" "programming language" OFF \
 "python-openssl" "openssl support" OFF \
 "SickRage" "TV show downloader" OFF \
-"SickBeard" "Movie downloader" OFF \
+"CouchPotato" "Movie downloader" OFF \
 "Transmission" "bittorrent client" OFF 2>softlist
 
 while read choice
@@ -134,7 +134,7 @@ do
     ;;
     SickRage) installSickRage
     ;;
-    SickBeard) installSickBeard
+    CouchPotato) installCouchPotato
     ;;
     Transmission) installTransmission
     ;;	
@@ -283,10 +283,10 @@ chmod 755 /etc/init.d/sickrage
 #add sickrage to system startup service to stay persistent
 update-rc.d sickrage defaults
 
-echo You will find SickRage in your browser at port 8081
+echo ; echo [  You will find SickRage in your browser at port 8081  ]
 }
 
-installSickBeard()
+installCouchPotato()
 {
 # check if it's already installed
 echo  
