@@ -4,11 +4,7 @@
 #
 # Log into pfSense
 #
-# curl -L meliton.github.io\loginsense.sh | bash
-
-########## VARIABLES ##########
-# put vars here
-
+# curl meliton.github.io\loginsense.sh | bash
 
 ########## FUNCTIONS ##########
 getRowColumn()
