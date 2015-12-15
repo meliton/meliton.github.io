@@ -14,8 +14,8 @@
 getRowColumn()
 {
 # Find rows and columns
-rows=$(stty -a | tr \; \\012 | grep 'rows' | cut -d' ' -f3)
-columns=$(stty -a | tr \; \\012 | grep 'columns' | cut -d' ' -f3)
+rows=$(tput lines)
+columns=$(tput cols)
 
 # Divide by two so the dialogs take up half of the screen
 r=$(( rows / 2 ))
