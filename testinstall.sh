@@ -266,21 +266,21 @@ installPythonOpenSSL
 # clone sickrage from github
 git clone https://github.com/SickRage/SickRage.git /opt/sickrage
 
-#create sickrage config file
+# create sickrage config file
 echo SR_USER=root >/etc/default/sickrage
 echo SR_GROUP=root >>/etc/default/sickrage
 echo SR_HOME=/opt/sickrage >>/etc/default/sickrage
 echo SR_DATA=/opt/sickrage >>/etc/default/sickrage
-echo SR_PIDFILE=/home/root/.sickrage.pid
+echo SR_PIDFILE=/home/root/.sickrage.pid >>/etc/default/sickrage
 
-#copy init script into startup folder and set attributes
+# copy init script into startup folder and set attributes
 cp /opt/sickrage/runscripts/init.debian /etc/init.d/sickrage
 chmod 755 /etc/init.d/sickrage
 
-#start the sickrage service
+# start the sickrage service
 /etc/init.d/sickrage start
 
-#add sickrage to system startup service to stay persistent
+# add sickrage to system startup service to stay persistent
 update-rc.d sickrage defaults
 
 echo ; echo [  You will find SickRage in your browser at port 8081  ]
@@ -288,8 +288,30 @@ echo ; echo [  You will find SickRage in your browser at port 8081  ]
 
 installCouchPotato()
 {
-# check if it's already installed
-echo  
+installGit
+installPython
+installPythonOpenSSL
+
+# clone CouchPotato from github
+git clone https://github.com/RuudBurger/CouchPotatoServer.git /opt/couchpotato
+
+# create CouchPotato config file
+echo CP_USER=root >/etc/default/couchpotato
+echo CP_HOME=/opt/couchpotato >>/etc/default/couchpotato
+echo CP_DATA=/opt/couchpotato >>/etc/default/couchpotato
+echo CP_PIDFILE=/home/root/.couchpotato.pid >>/etc/default/couchpotato
+
+# copy init script into startup folder and set attributes
+cp /opt/couchpotato/init/ubuntu /etc/init.d/couchpotato
+chmod 755 /etc/init.d/couchpotato
+
+# start the sickrage service
+/etc/init.d/couchpotato start
+
+# add sickrage to system startup service to stay persistent
+update-rc.d couchpotato defaults
+
+echo ; echo [  You will find CouchPotato in your browser at port 5050  ]  
 }
 
 installTransmission()
