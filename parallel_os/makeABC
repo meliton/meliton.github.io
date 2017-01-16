@@ -1,0 +1,63 @@
+#!/usr/bin/env sh
+
+#
+# makeABC - Script to build subdirectories and files for
+#           Parallel Operating Systems
+#
+# 20111102 - corrections and cleanup by John D. Baker
+# 20170115 - fixed invalid user chown error
+
+target_user=User01
+target_group=$target_user
+target_dir=/mnt/sdb1/$target_user
+mel_chown=user01
+
+# get UID
+uid=$(id -u)
+
+if [ ! -d $target_dir ] ; then
+  if [ $uid -eq 0 ] ; then
+    mkdir -p $target_dir
+    chown $mel_chown:$mel_chown $target_dir
+  else
+    echo "Directory \"$target_dir\" does not exist."
+    echo "Re-run as follows:"
+    echo "\$  su"
+    echo "#  $0"
+    echo "#  exit"
+    echo "\$  cd $target_dir/ALPHABET"
+    exit 1
+  fi
+fi
+
+cd $target_dir
+clear
+
+rm -rf "ALPHABET"
+mkdir "ALPHABET"
+cd "ALPHABET"
+echo ABC > .ABC.txt
+echo abc > abc.txt
+echo ABBC > .ABBC.txt
+echo abbc > abbc.txt
+echo AC > .AC.txt
+echo A3C > .A3C.txt
+echo ABBBBBBC > .ABBBBBBC.txt
+echo AbbCC > .AbbCC.txt
+echo aBBcc > aBBcc.txt
+echo A123B > .A123B.txt
+echo AB > .AB.txt
+echo A8B > .A8B.txt
+echo A1234567890B > .A1234567890B.txt
+echo AB1 > .AB1.txt
+echo RD2 > .RD2.txt
+echo K9 > .K9.txt
+echo 993ABC > 999ABC.txt
+
+if [ $uid -eq 0 ] ; then
+  chown -R $mel_chown:$mel_chown $target_dir
+fi
+
+ls -lR *.txt
+
+exit
