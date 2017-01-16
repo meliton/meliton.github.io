@@ -1,0 +1,93 @@
+#!/usr/bin/env sh
+
+#
+# makeds - Script to build subdirectories and files for
+# Parallel Operating Systems
+#
+# 20111102 - corrections and cleanup by John D. Baker
+# 20111207 - tweaks to handle running as root vs. unpriviledged
+# 20170115 - fixed invalid user chown error
+
+target_user=User01
+target_group=$target_user
+target_dir=/mnt/sdb1/$target_user
+mel_chown=user01
+
+# get UID
+uid=$(id -u)
+
+if [ ! -d $target_dir ] ; then
+  if [ $uid -eq 0 ] ; then
+    mkdir -p $target_dir
+    chown $mel_chown:$mel_chown $target_dir
+  else
+    echo "Directory \"$target_dir\" does not exist."
+    echo "Re-run as follows:"
+    echo "\$  su"
+    echo "#  $0"
+    echo "#  exit"
+    echo "\$  cd $target_dir"
+    exit 1
+  fi
+fi
+
+cd $target_dir
+clear
+
+rm -rf "College"
+echo "Create new directory in $(pwd) ..."
+mkdir -p "College"
+
+mkdir -p College/Arts
+echo "Dean's List" > "College/Arts/Dean's List.doc"
+echo "Catalog" > "College/Arts/Catalog.mdb"
+
+mkdir -p College/Arts/Architecture
+echo "Budget" > College/Arts/Architecture/Budget02010.xls
+
+mkdir -p College/Arts/Music       
+echo "Budget" > College/Arts/Music/Budget02020.xls
+
+mkdir -p College/Business
+echo "Dean's List" > "College/Business/Dean's List.doc"
+echo "Catalog" > College/Business/Catalog.mdb
+
+mkdir -p College/Business/Accounting
+echo "Budget" > College/Business/Accounting/Budget03010.xls
+
+mkdir -p College/Business/Management
+echo "Budget" > College/Business/Management/Budget03020.xls
+
+mkdir -p College/Science
+echo "Dean's List" > "College/Science/Dean's List.doc"
+echo "Catalog" > College/Science/Catalog.mdb
+
+mkdir -p College/Science/Astronomy
+echo "Budget" > College/Science/Astronomy/Budget01010.xls
+
+mkdir -p College/Science/Biology
+echo "Budget" > College/Science/Biology/Budget01020.xls
+
+mkdir -p College/Science/Chemistry
+echo "Budget" > College/Science/Chemistry/Budget01030.xls
+
+mkdir -p College/Technology
+echo "Dean's List" > "College/Technology/Dean's List.doc"
+echo "Catalog" > College/Technology/Catalog.mdb
+
+mkdir -p College/Technology/Dental
+echo "Budget" > College/Technology/Dental/Budget04010.xls
+
+mkdir -p College/Technology/Information\ Technology
+echo "Budget" > "College/Technology/Information Technology/Budget04020.xls"
+
+mkdir -p College/Technology/Medical
+echo "Budget" > College/Technology/Medical/Budget04030.xls
+
+if [ $uid -eq 0 ] ; then
+  chown -R $mel_chown:$mel_chown $target_dir
+fi
+
+echo "All the files were successfully created in $(pwd)."
+
+exit

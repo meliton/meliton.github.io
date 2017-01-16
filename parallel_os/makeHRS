@@ -1,0 +1,88 @@
+#!/usr/bin/env sh
+
+#
+# makeHRS - Script to build subdirectories and files for
+#           Parallel Operating Systems
+#
+# 20111102 - corrections by John D. Baker
+# 20111207 - tweaked for running as root or unprivileged
+# 20170115 - fixed invalid user chown error
+
+target_user=User01
+target_group=$target_user
+target_dir=/mnt/sdb1/$target_user
+mel_chown=user01
+
+# get UID
+uid=$(id -u)
+
+if [ ! -d $target_dir ] ; then
+  if [ $uid -eq 0 ] ; then
+    mkdir -p $target_dir
+    chown $mel_chown:$mel_chown $target_dir
+  else
+    echo "Directory \"$target_dir\" does not exist."
+    echo "Re-run as follows:"
+    echo "\$  su"
+    echo "#  $0"
+    echo "#  exit"
+    echo "\$  cd $target_dir/Level1"
+    exit 1
+  fi
+fi
+
+cd $target_dir
+clear
+
+rm -rf "Level1"
+mkdir "Level1"
+cd "Level1"
+
+i=1
+while [ $i -le 9 ] ; do
+  fn=$(printf "file%03d" $i)
+  echo "${fn}" > $fn
+  i=$((i+1))
+done
+
+lsattr file001
+chattr -V +s  file002
+chattr -V +d  file003
+chattr -V +sd file004
+chattr -V +sd file005
+chattr -V +sd file006
+chattr -V +s  file007
+chattr -V +s  file008
+chattr -V +sd file009
+
+mkdir Level2
+cd "Level2"
+
+i=1
+while [ $i -le 9 ] ; do
+  fn=$(printf "file%03d" $i)
+  echo "${fn}2" > $fn
+  i=$((i+1))
+done
+
+lsattr file001
+chattr -V +s  file002
+chattr -V +d  file003
+chattr -V +sd file004
+chattr -V +sd file005
+chattr -V +sd file006
+chattr -V +s  file007
+chattr -V +s  file008
+chattr -V +sd file009
+
+cd $target_dir
+
+if [ $uid -eq 0 ] ; then
+  chown -R $mel_chown:$mel_chown $target_dir
+fi
+
+ls -lR
+
+cd Level1
+
+exit

@@ -1,0 +1,60 @@
+#!/usr/bin/env sh
+
+#
+# makeQUOTE - Script to build subdirectories and files for
+#             Parallel Operating Systems
+#
+# 20111102 - corrections and cleanup by John D. Baker
+# 20111207 - tweaked for running as root or unprivileged
+# 20170115 - fixed invalid user chown error
+
+target_user=User01
+target_group=$target_user
+target_dir=/mnt/sdb1/$target_user
+mel_chown=user01
+
+# get UID
+uid=$(id -u)
+
+if [ ! -d $target_dir ] ; then
+  if [ $uid -eq 0 ] ; then
+    mkdir -p $target_dir
+    chown $mel_chown:$mel_chown $target_dir
+  else
+    echo "Directory \"$target_dir\" does not exist."
+    echo "Re-run as follows:"
+    echo "\$  su"
+    echo "#  $0"
+    echo "#  exit"
+    echo "\$  cd $target_dir/QUOTE"
+    exit 1
+  fi
+fi
+
+cd $target_dir
+clear
+
+rm -rf "QUOTE"
+mkdir "QUOTE"
+cd "QUOTE"
+echo The fool would teach the learned > Quote001.txt
+echo The force of anger is broken by a soft answer > Quote002.txt
+echo The fox may grow gray, but never good > Quote003.txt
+echo The gods assist the industrious > Quote004.txt
+echo The gods send nuts to those who have no teeth > Quote005.txt 
+echo The good is the enemy of the best > Quote006.txt
+echo The greater the fool, the greater his insolence > Quote007.txt
+echo The half is better than the whole > Quote008.txt
+echo The hand that rocks the cradle rules the world > Quote009.txt
+echo The laborer is worthy of his hire > Quote0010.txt
+echo The labour is in itself a pleasure > Quote0011.txt
+
+cat Quote00?.txt Quote001[01].txt > Quote0012.txt
+
+if [ $uid -eq 0 ] ; then
+  chown -R $mel_chown:$mel_chown $target_dir
+fi
+
+ls -lR *.txt
+
+exit
