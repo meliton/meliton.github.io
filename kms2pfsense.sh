@@ -6,5 +6,5 @@
 #
 # Install with this command (from your pfSense appliance):
 #
-# curl -L meliton.github.io\kms2pfsense.sh | bash
+# curl -L meliton.github.io/kms2pfsense.sh | sh
 echo Hello world
