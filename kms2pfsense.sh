@@ -20,7 +20,7 @@ case "$(uname -s 2>/dev/null | grep -c "FreeBSD" )" in
 esac
 
 # check for amd64 hardware
-case "$(uname -m 2>/dev/null | grep -c "amd64" )" in
+case "$(uname -m 2>/dev/null | grep -c "amd-64" )" in
    1) ;;
    *) echo "Wrong Hardware Type, not amd64." ; 
    exit 1 ;;
