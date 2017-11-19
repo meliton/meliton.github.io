@@ -57,7 +57,7 @@ esac
 copyKMS()
 {
 echo "Copying KMS server to /bin directory"
-curl /bin/vlmcsd -sS https://raw.githubusercontent.com/meliton/KMS-on-pfSense/master/bin/vlmcsd
+curl /bin/vlmcsd https://raw.githubusercontent.com/meliton/KMS-on-pfSense/master/bin/vlmcsd
 
 }
 
