@@ -46,7 +46,7 @@ echo "SUCCESS! You are running this on a compatible pfSense appliance."
 getUserStatus()
 {
 # Checks if user is root
-case "$EUID" in
+case "$(id -u)" in
     0) echo "PASSED - Running as root" ;;
     *) echo "FAILED - Installation must be run as ROOT user" ; exit 1 ;;
 esac 
