@@ -56,7 +56,7 @@ esac
 
 
 #get the user status
-getUserStatus
+# getUserStatus
 
 # get the hardware specs
 getPFspecs
