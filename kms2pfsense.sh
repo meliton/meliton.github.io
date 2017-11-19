@@ -54,9 +54,19 @@ case "$(id -u | grep -c "0")" in
 esac 
 }
 
+copyKMS()
+{
+echo "Copying KMS server to /bin directory"
+curl /bin/vlmcsd -sS https://raw.githubusercontent.com/meliton/KMS-on-pfSense/master/bin/vlmcsd
+
+}
 
 #get the user status
-# getUserStatus
+#getUserStatus
 
 # get the hardware specs
 getPFspecs
+
+# copy the KMS server to /bin 
+copyKMS
+
