@@ -58,7 +58,8 @@ copyKMS()
 {
 echo "Copying KMS server to /bin directory"
 curl -o /bin/vlmcsd -sS https://raw.githubusercontent.com/meliton/KMS-on-pfSense/master/bin/vlmcsd
-
+echo "Making KMS server executable"
+chmod 766 /bin/vlmcsd
 }
 
 #get the user status
