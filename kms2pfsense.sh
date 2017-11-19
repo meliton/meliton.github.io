@@ -14,21 +14,21 @@ echo "First, we will check that you are running this on a compatible device."
 
 # check for FreeBSD OS
 case "$(uname -s 2>/dev/null | grep -c "FreeBSD" )" in
-   1) echo "Running on FreeBSD" ;;
-   *) echo "Wrong OS type, not FreeBSD." ; 
+   1) echo "PASSED - Running on FreeBSD" ;;
+   *) echo "FAILED - Wrong OS type, not FreeBSD" ; 
    exit 1 ;;
 esac
 
 # check for amd64 hardware
-case "$(uname -m 2>/dev/null | grep -c "amd-64" )" in
-   1) ;;
-   *) echo "Wrong Hardware Type, not amd64." ; 
+case "$(uname -m 2>/dev/null | grep -c "amd64" )" in
+   1) echo "PASSED - Hardware platform is amd64" ;;
+   *) echo "FAILED - Wrong Hardware type, not amd64" ; 
    exit 1 ;;
 esac
 
 # check for OS version 11.xx or higher
 case "$(uname -r 2>/dev/null | grep -c "11." )" in
-   1) ;;
+   1) echo "PASSED - Operating system 11.xx or higher" ;;
    *) echo "Wrong OS version. Not at least 11.xx" ; 
    exit 1 ;;
 esac
