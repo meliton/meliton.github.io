@@ -68,7 +68,7 @@ echo "#!/bin/sh" > /etc/rc.d/kms_start.sh
 echo "#" >> /etc/rc.d/kms_start.sh
 echo "# startup script on bootup for KMS server with defaults" >> /etc/rc.d/kms_start.sh
 echo "#" >> /etc/rc.d/kms_start.sh
-echo "./bin/vlmcsd" >> /etc/rc.d/kms_start.sh
+echo "/bin/vlmcsd" >> /etc/rc.d/kms_start.sh
 }
 
 makeExecute()
@@ -76,11 +76,22 @@ makeExecute()
 echo "Setting KMS binary executable"
 chmod 755 /bin/vlmcsd
 echo "Checking KMS binary for execute permissions"
-ls -al /bin/vlmcsd
+ls -l /bin/vlmcsd
 echo "Making kms_start script executable"
 chmod 755 /etc/rc.d/kms_start.sh
 echo "Checking kms_start script for execute permissions"
-ls -al /etc/rc.d/kms_start.sh
+ls -l /etc/rc.d/kms_start.sh
+}
+
+preCleanUp()
+{
+# clean-up old files
+echo "Killing KMS server..."
+pkill vlmcsd
+echo "Deleting KMS server..."
+rm /bin/vlmcsd
+echo "Deleting old kms_start script..."
+rm /etc/rc.d/kms_start.sh
 }
 
 #get the user status
@@ -88,6 +99,9 @@ ls -al /etc/rc.d/kms_start.sh
 
 # get the hardware specs
 getPFspecs
+
+# clean-up old files
+preCleanUp
 
 # copy the KMS server to /bin 
 copyKMS
