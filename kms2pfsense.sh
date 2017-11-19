@@ -13,8 +13,8 @@ getPFspecs()
 echo "First, we will check that you are running this on a compatible device."
 
 # check for FreeBSD OS
-case "$(uname -s 2>/dev/null | grep -c "Free-BSD" )" in
-   1) ;;
+case "$(uname -s 2>/dev/null | grep -c "FreeBSD" )" in
+   1) echo "Running on FreeBSD" ;;
    *) echo "Wrong OS type, not FreeBSD." ; 
    exit 1 ;;
 esac
