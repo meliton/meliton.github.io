@@ -48,8 +48,8 @@ getUserStatus()
 {
 # Checks if user is root
 echo "First we will check if you are running as root"
-case "$(id -u | grep -c "0")" in
-    0) echo " PASSED - Running as root" ;;
+case "$(id -u | grep -c "1")" in
+    1) echo " PASSED - Running as root" ;;
     *) echo " FAILED - Installation must be run as ROOT user" ; exit 1 ;;
 esac 
 }
