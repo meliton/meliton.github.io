@@ -10,33 +10,34 @@
 getPFspecs()
 {
 # Notice to gather specs
-echo "First, we will check that you are running this on a compatible device."
+echo 
+echo "Now we will check that you are running this on a compatible device."
 
 # check for FreeBSD OS
 case "$(uname -s 2>/dev/null | grep -c "FreeBSD" )" in
-   1) echo "PASSED - Running on FreeBSD" ;;
-   *) echo "FAILED - Wrong OS type, not FreeBSD" ; 
+   1) echo " PASSED - Running on FreeBSD" ;;
+   *) echo " FAILED - Wrong OS type, not FreeBSD" ; 
    exit 1 ;;
 esac
 
 # check for amd64 hardware
 case "$(uname -m 2>/dev/null | grep -c "amd64" )" in
-   1) echo "PASSED - Hardware platform is amd64" ;;
-   *) echo "FAILED - Wrong Hardware type, not amd64" ; 
+   1) echo " PASSED - Hardware platform is amd64" ;;
+   *) echo " FAILED - Wrong Hardware type, not amd64" ; 
    exit 1 ;;
 esac
 
 # check for OS version 11.xx or higher
 case "$(uname -r 2>/dev/null | grep -c "11." )" in
-   1) echo "PASSED - Operating system 11.xx or higher" ;;
-   *) echo "Wrong OS version. Not at least 11.xx" ; 
+   1) echo " PASSED - Operating system 11.xx or higher" ;;
+   *) echo " FAILED - Wrong OS version. Not at least 11.xx" ; 
    exit 1 ;;
 esac
 
 # check for kms server dependancy
 case "$(ls /libexec/ld-elf.so.1 2>/dev/null | grep -c "ld" )" in
-   1) echo "PASSED - KMS server dependancy OK" ;;
-   *) echo "FAILED - KMS server dependancy missing" ; 
+   1) echo " PASSED - KMS server dependancy OK" ;;
+   *) echo " FAILED - KMS server dependancy missing" ; 
    exit 1 ;;
 esac
 
@@ -46,9 +47,10 @@ echo "SUCCESS! You are running this on a compatible pfSense appliance."
 getUserStatus()
 {
 # Checks if user is root
+echo "First we will check if you are running as root"
 case "$(id -u | grep -c "0")" in
-    0) echo "PASSED - Running as root" ;;
-    *) echo "FAILED - Installation must be run as ROOT user" ; exit 1 ;;
+    0) echo " PASSED - Running as root" ;;
+    *) echo " FAILED - Installation must be run as ROOT user" ; exit 1 ;;
 esac 
 }
 
