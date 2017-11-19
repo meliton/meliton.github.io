@@ -33,7 +33,14 @@ case "$(uname -r 2>/dev/null | grep -c "11." )" in
    exit 1 ;;
 esac
 
-echo "Success .You are running this on a compatible pfSense appliance." 
+# check for kms server dependancy
+case "$(ls /libexec/ld-elf.so.1 2>/dev/null | grep -c "ld" )" in
+   1) echo "PASSED - KMS server dependancy OK" ;;
+   *) echo "FAILED - KMS server dependancy missing" ; 
+   exit 1 ;;
+esac
+
+echo "SUCCESS! You are running this on a compatible pfSense appliance." 
 }
 
 
