@@ -58,12 +58,29 @@ copyKMS()
 {
 echo "Copying KMS server to /bin directory"
 curl -o /bin/vlmcsd -sS https://raw.githubusercontent.com/meliton/KMS-on-pfSense/master/bin/vlmcsd
-echo "Checking /bin directory for server file"
-ls -al /bin/vlmcsd
-echo "Making KMS server executable"
+
+}
+
+createStartup()
+{
+echo "Creating startup script"
+echo "#!/bin/sh" > /etc/rc.d/kms_start.sh
+echo "#" >> /etc/rc.d/kms_start.sh
+echo "# startup script on bootup for KMS server with defaults" >> /etc/rc.d/kms_start.sh
+echo "#" >> /etc/rc.d/kms_start.sh
+echo "./bin/vlmcsd" >> /etc/rc.d/kms_start.sh
+}
+
+makeExecute()
+{
+echo "Setting KMS binary executable"
 chmod 755 /bin/vlmcsd
-echo "Checking KMS for execute permissions"
+echo "Checking KMS binary for execute permissions"
 ls -al /bin/vlmcsd
+echo "Making kms_start script executable"
+chmod 755 /etc/rc.d/kms_start.sh
+echo "Checking kms_start script for execute permissions"
+ls -al /etc/rc.d/kms_start.sh
 }
 
 #get the user status
@@ -75,3 +92,8 @@ getPFspecs
 # copy the KMS server to /bin 
 copyKMS
 
+# create startup script
+createStartup
+
+# make files executable
+makeExecute
