@@ -106,7 +106,7 @@ runKMS()
 # run KMS server
 echo " "
 echo "======= STARTING KMS server on port 1688"
-vlmcsd
+vlmcsd -R30d -A7d
 netstat -an | grep 1688
 }
 
