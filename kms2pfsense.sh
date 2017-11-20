@@ -74,7 +74,7 @@ echo "/bin/vlmcsd" >> /etc/rc.d/kms_start.sh
 
 makeExecute()
 {
-echo 
+echo ""
 echo "======= SETTING executable flags on files"
 echo " SETTING KMS binary executable"
 chmod 755 /bin/vlmcsd
@@ -88,7 +88,7 @@ ls -l /etc/rc.d/kms_start.sh
 preCleanUp()
 {
 # clean-up old files
-echo 
+echo ""
 echo "======= CLEANING up old files"
 echo " KILLING KMS server..."
 pkill vlmcsd
