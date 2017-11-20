@@ -57,14 +57,17 @@ esac
 
 copyKMS()
 {
-echo "Copying KMS server to /bin directory"
+echo ""
+echo "======= COPYING KMS binary"
+echo " COPYING KMS server to /bin directory"
 curl -o /bin/vlmcsd -sS https://raw.githubusercontent.com/meliton/KMS-on-pfSense/master/bin/vlmcsd
-
 }
 
 createStartup()
 {
-echo "Creating startup script"
+echo ""
+echo "======= WRITING startup script"
+echo " WRITING startup script"
 echo "#!/bin/sh" > /etc/rc.d/kms_start.sh
 echo "#" >> /etc/rc.d/kms_start.sh
 echo "# startup script on bootup for KMS server with defaults" >> /etc/rc.d/kms_start.sh
