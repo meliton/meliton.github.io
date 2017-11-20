@@ -42,7 +42,7 @@ case "$(ls /libexec/ld-elf.so.1 2>/dev/null | grep -c "ld" )" in
    exit 1 ;;
 esac
 
-echo "SUCCESS! You are running this on a compatible pfSense appliance." 
+echo " SUCCESS! You are running a compatible pfSense appliance" 
 }
 
 getUserStatus()
@@ -51,7 +51,8 @@ getUserStatus()
 echo "First we will check if you are running as root"
 case "$(id -u | grep -c "0")" in
     1) echo " PASSED - Running as root" ;;
-    *) echo " FAILED - Installation must be run as ROOT user" ; exit 1 ;;
+    *) echo " FAILED - Installation must be run as ROOT user" ; 
+    exit 1 ;;
 esac 
 }
 
