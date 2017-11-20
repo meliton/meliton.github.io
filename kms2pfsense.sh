@@ -70,9 +70,10 @@ echo "======= WRITING startup script"
 echo " WRITING startup script as /etc/rc.d/kms_start.sh"
 echo "#!/bin/sh" > /etc/rc.d/kms_start.sh
 echo "#" >> /etc/rc.d/kms_start.sh
-echo "# startup script on bootup for KMS server with defaults" >> /etc/rc.d/kms_start.sh
+echo "# startup script on bootup for KMS server" >> /etc/rc.d/kms_start.sh
+echo "# 30 day renewal, 7 day failed retry interval" >> /etc/rc.d/kms_start.sh
 echo "#" >> /etc/rc.d/kms_start.sh
-echo "/bin/vlmcsd" >> /etc/rc.d/kms_start.sh
+echo "/bin/vlmcsd -R30d -A7d" >> /etc/rc.d/kms_start.sh
 }
 
 makeExecute()
