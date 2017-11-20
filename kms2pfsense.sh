@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-# KMS on pfSense Installer
+# KMS-on-pfSense Installer
 # by Meliton Hinojosa
 # Installer for KMS server on your pfSense appliance
-#
 #
 # Install with this command (from your pfSense appliance):
 #
@@ -68,7 +67,7 @@ createStartup()
 {
 echo " "
 echo "======= WRITING startup script"
-echo " WRITING startup script"
+echo " WRITING startup script as /etc/rc.d/kms_start.sh"
 echo "#!/bin/sh" > /etc/rc.d/kms_start.sh
 echo "#" >> /etc/rc.d/kms_start.sh
 echo "# startup script on bootup for KMS server with defaults" >> /etc/rc.d/kms_start.sh
@@ -108,7 +107,6 @@ runKMS()
 echo " "
 echo "======= STARTING KMS server on port 1688"
 vlmcsd
-echo ""
 netstat -an | grep 1688
 }
 
@@ -124,7 +122,7 @@ preCleanUp
 # copy the KMS server to /bin 
 copyKMS
 
-# create startup script
+# create startup script at /etc/rc.d
 createStartup
 
 # make files executable
@@ -132,4 +130,3 @@ makeExecute
 
 # run KMS server
 runKMS
-
