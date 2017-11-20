@@ -84,8 +84,8 @@ chmod 755 /bin/vlmcsd
 echo " SETTING kms_start script executable"
 chmod 755 /etc/rc.d/kms_start.sh
 echo " CHECKING KMS binary and kms_start script for execute permissions"
-ls -l /bin/vlmcsd
-ls -l /etc/rc.d/kms_start.sh
+ls -l /bin/vlmcsd | cut -d" " -f1,12
+ls -l /etc/rc.d/kms_start.sh | cut -d" " -f1,12
 }
 
 preCleanUp()
