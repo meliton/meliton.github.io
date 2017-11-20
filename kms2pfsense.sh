@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
 # KMS on pfSense Installer
 # by Meliton Hinojosa
-# Install KMS server on your pfSense appliance
+# Installer for KMS server on your pfSense appliance
 #
 #
 # Install with this command (from your pfSense appliance):
 #
 # curl -L meliton.github.io/kms2pfsense.sh | sh
+
 getPFspecs()
 {
 # Notice to gather specs
 echo 
-echo "Now we will check that you are running this on a compatible device."
+echo "==== CHECKING that you are running this on a compatible device."
 
 # check for FreeBSD OS
 case "$(uname -s 2>/dev/null | grep -c "FreeBSD" )" in
@@ -75,11 +76,10 @@ makeExecute()
 {
 echo "Setting KMS binary executable"
 chmod 755 /bin/vlmcsd
-echo "Checking KMS binary for execute permissions"
-ls -l /bin/vlmcsd
-echo "Making kms_start script executable"
+echo "Setting kms_start script executable"
 chmod 755 /etc/rc.d/kms_start.sh
-echo "Checking kms_start script for execute permissions"
+echo "Checking KMS binary and kms_start script for execute permissions"
+ls -l /bin/vlmcsd
 ls -l /etc/rc.d/kms_start.sh
 }
 
@@ -89,9 +89,9 @@ preCleanUp()
 echo "Killing KMS server..."
 pkill vlmcsd
 echo "Deleting KMS server..."
-rm /bin/vlmcsd
+rm -f /bin/vlmcsd
 echo "Deleting old kms_start script..."
-rm /etc/rc.d/kms_start.sh
+rm -f /etc/rc.d/kms_start.sh
 }
 
 #get the user status
