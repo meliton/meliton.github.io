@@ -57,7 +57,7 @@ esac
 
 copyKMS()
 {
-echo ""
+echo " "
 echo "======= COPYING KMS binary"
 echo " COPYING KMS server to /bin directory"
 curl -o /bin/vlmcsd -sS https://raw.githubusercontent.com/meliton/KMS-on-pfSense/master/bin/vlmcsd
@@ -65,7 +65,7 @@ curl -o /bin/vlmcsd -sS https://raw.githubusercontent.com/meliton/KMS-on-pfSense
 
 createStartup()
 {
-echo ""
+echo " "
 echo "======= WRITING startup script"
 echo " WRITING startup script"
 echo "#!/bin/sh" > /etc/rc.d/kms_start.sh
@@ -77,7 +77,7 @@ echo "/bin/vlmcsd" >> /etc/rc.d/kms_start.sh
 
 makeExecute()
 {
-echo ""
+echo " "
 echo "======= SETTING executable flags on files"
 echo " SETTING KMS binary executable"
 chmod 755 /bin/vlmcsd
@@ -91,7 +91,7 @@ ls -l /etc/rc.d/kms_start.sh
 preCleanUp()
 {
 # clean-up old files
-echo ""
+echo " "
 echo "======= CLEANING up old files"
 echo " KILLING KMS server..."
 pkill vlmcsd
