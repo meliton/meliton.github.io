@@ -102,6 +102,16 @@ echo " DELETING old kms_start script..."
 rm -f /etc/rc.d/kms_start.sh
 }
 
+runKMS()
+{
+# run KMS server
+echo " "
+echo "======= STARTING KMS server on port 1688"
+vlmcsd
+echo ""
+netstat -an | grep 1688
+}
+
 #get the user status
 #getUserStatus
 
@@ -119,3 +129,6 @@ createStartup
 
 # make files executable
 makeExecute
+
+# run KMS server
+runKMS
