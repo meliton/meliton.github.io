@@ -12,7 +12,7 @@ getPFspecs()
 {
 # Notice to gather specs
 echo 
-echo "==== CHECKING that you are running this on a compatible device."
+echo "======= CHECKING for compatible device"
 
 # check for FreeBSD OS
 case "$(uname -s 2>/dev/null | grep -c "FreeBSD" )" in
@@ -74,11 +74,13 @@ echo "/bin/vlmcsd" >> /etc/rc.d/kms_start.sh
 
 makeExecute()
 {
-echo "Setting KMS binary executable"
+echo 
+echo "======= SETTING executable flags on files"
+echo " SETTING KMS binary executable"
 chmod 755 /bin/vlmcsd
-echo "Setting kms_start script executable"
+echo " SETTING kms_start script executable"
 chmod 755 /etc/rc.d/kms_start.sh
-echo "Checking KMS binary and kms_start script for execute permissions"
+echo " CHECKING KMS binary and kms_start script for execute permissions"
 ls -l /bin/vlmcsd
 ls -l /etc/rc.d/kms_start.sh
 }
@@ -86,11 +88,13 @@ ls -l /etc/rc.d/kms_start.sh
 preCleanUp()
 {
 # clean-up old files
-echo "Killing KMS server..."
+echo 
+echo "======= CLEANING up old files"
+echo " KILLING KMS server..."
 pkill vlmcsd
-echo "Deleting KMS server..."
+echo " DELETING old KMS server..."
 rm -f /bin/vlmcsd
-echo "Deleting old kms_start script..."
+echo " DELETING old kms_start script..."
 rm -f /etc/rc.d/kms_start.sh
 }
 
