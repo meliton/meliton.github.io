@@ -30,9 +30,9 @@ case "$(uname -n 2>/dev/null | grep -c "wdmc" )" in
 esac
 
 # check for amd64 hardware
-case "$(uname -m 2>/dev/null | grep -c "amd71" )" in
-   1) echo " PASSED - Hardware platform is amd71" ;;
-   *) echo " FAILED - Wrong Hardware type, not amd71" ; 
+case "$(uname -m 2>/dev/null | grep -c "armv7l" )" in
+   1) echo " PASSED - Hardware platform is armv7l" ;;
+   *) echo " FAILED - Wrong Hardware type, not armv7l" ; 
    exit 1 ;;
 esac
 
@@ -63,7 +63,7 @@ copyKMS()
 echo " "
 echo "======= COPYING KMS binary"
 echo " COPYING KMS server to /bin directory"
-curl -o /bin/vlmcsd -sS https://raw.githubusercontent.com/meliton/KMS-on-WDCloud/master/bin/vlmcsd
+curl -k -o /bin/vlmcsd -sS https://raw.githubusercontent.com/meliton/KMS-on-WDCloud/master/bin/vlmcsd
 }
 
 createStartup()
@@ -126,7 +126,7 @@ preCleanUp
 # copy the KMS server to /bin 
 copyKMS
 
-# create startup script at /etc/rc.d
+# create startup script at /etc/init.d
 createStartup
 
 # make files executable
