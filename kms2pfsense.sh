@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # KMS-on-pfSense Installer
 # by Meliton Hinojosa
 # Installer for KMS server on your pfSense appliance
