@@ -25,7 +25,7 @@ set25()
 {
 echo "echo -ne 'STA\r' | tee /dev/ttyS2" > fanSpeed
 echo "echo -ne 'FAN=19\r' | tee /dev/ttyS2" >> fanSpeed
-echo Fan set at 25 percent.
+echo Fan set at 25 percent since temperature is $myTemp.
 cat fanSpeed | bash
 rm fanSpeed
 }
@@ -34,7 +34,7 @@ set50()
 {
 echo "echo -ne 'STA\r' | tee /dev/ttyS2" > fanSpeed
 echo "echo -ne 'FAN=32\r' | tee /dev/ttyS2" >> fanSpeed
-echo Fan set at 50 percent.
+echo Fan set at 50 percent since temperature is $myTemp.
 cat fanSpeed | bash
 rm fanSpeed
 }
@@ -43,7 +43,7 @@ set75()
 {
 echo "echo -ne 'STA\r' | tee /dev/ttyS2" > fanSpeed
 echo "echo -ne 'FAN=4B\r' | tee /dev/ttyS2" >> fanSpeed
-echo Fan set at 75 percent.
+echo Fan set at 75 percent since temperature is $myTemp.
 cat fanSpeed | bash
 rm fanSpeed
 }
@@ -52,7 +52,7 @@ set90()
 {
 echo "echo -ne 'STA\r' | tee /dev/ttyS2" > fanSpeed
 echo "echo -ne 'FAN=5A\r' | tee /dev/ttyS2" >> fanSpeed
-echo Fan set at 90 percent.
+echo Fan set at 90 percent since temperature is $myTemp.
 cat fanSpeed | bash
 rm fanSpeed
 }
@@ -71,7 +71,8 @@ elif [ "$myTemp" -lt 131 ]
 then
 set75
 
-else
+elif [ "$myTemp" -gt 130 ]
+then
 set90
 
 fi
