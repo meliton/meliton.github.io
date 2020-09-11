@@ -27,8 +27,8 @@ case "$(uname -m 2>/dev/null | grep -c "amd64" )" in
    exit 1 ;;
 esac
 
-# check for OS version 11.xx or higher
-case "$(uname -r 2>/dev/null | grep -c "11." )" in
+# check for OS version 11.xx or 12.xx
+case "$(uname -r 2>/dev/null | grep -c "11.\|12." )" in
    1) echo " PASSED - Operating system 11.xx or higher" ;;
    *) echo " FAILED - Wrong OS version. Not at least 11.xx" ; 
    exit 1 ;;
